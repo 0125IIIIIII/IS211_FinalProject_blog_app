@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Flask Blog{% endblock %}
+
+{% block content %}
+<h1>Your Posts</h1>
+<a href="{{ url_for('new_post') }}" class="btn btn-success mb-3">Create New Post</a>
+{% if posts %}
+  <div class="list-group">
+    {% for post in posts %}
+      <div class="list-group-item">
+        <h5>{{ post.title }}</h5>
+        <small>Posted on {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        <p>{{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}</p>
+        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>You have no posts yet.</p>
+{% endif %}
+{% endblock %}

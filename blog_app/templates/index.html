@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask Blog{% endblock %}
+
+{% block content %}
+<h1>All Posts</h1>
+{% if posts %}
+  <div class="list-group">
+    {% for post in posts %}
+      <a href="#" class="list-group-item list-group-item-action">
+        <h5>{{ post.title }}</h5>
+        <small>Posted on {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        <p>{{ post.content[:100] }}{% if post.content|length > 100 %}...{% endif %}</p>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No posts yet.</p>
+{% endif %}
+{% endblock %}
